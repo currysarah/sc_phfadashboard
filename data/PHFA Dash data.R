@@ -296,7 +296,7 @@ counties.sf <- rbind(erie, noterie) %>%
   distinct(county, .keep_all = TRUE)
 
 #### permit files by county ####
-permits <- st_read("/Users/smcurry/Library/CloudStorage/Box-Box/HIP_SC/PHFA_Dashboard/co2024a_clean.csv") %>%
+permits <- st_read("co2024a_clean.csv") %>%
   filter(FIPSState == 42) %>%
   mutate(county = str_remove(CountyName, "\\ County.*$")) %>%
   mutate(totalresunitpermits24 = as.numeric(X1UnitUnits) + as.numeric(X2UnitUnits) + as.numeric(X3_4UnitUnits) + as.numeric(X5UnitUnits)) %>%
@@ -322,11 +322,11 @@ panel.sf <- dat %>%
   left_join(dat, by = "county") %>%
   st_as_sf()
 
-st_write(panel.sf, "/Users/smcurry/Library/CloudStorage/Box-Box/HIP_SC/PHFA_Dashboard/dashtest/PHFA-Housing-Dash-master/dashboard files/PHFA_dash_data_June.25.geojson", driver = "GeoJSON")
+st_write(panel.sf, "PHFA_dash_data_June.25.geojson", driver = "GeoJSON")
 
 state_avg = cbind(chas_pa, dat_PA, permits_pa)
 
-st_write(state_avg, "/Users/smcurry/Library/CloudStorage/Box-Box/HIP_SC/PHFA_Dashboard/dashtest/PHFA-Housing-Dash-master/dashboard files/state_avg_06-25.csv", driver = "CSV", append = TRUE)
+st_write(state_avg, "state_avg_06-25.csv", driver = "CSV", append = TRUE)
 
 
 

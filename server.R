@@ -165,9 +165,14 @@ server <- function(input, output, session) {
     
     v <- input$variable_bar
     alias <- variable_aliases[v]
+    
+##custom hover text##
+    df$hover_text <- paste(alias, ":", df$variable_bar, "<br>",
+                           "Rural or Urban :", df$rural, "<br>",
+                           "County :", df$county, "<br>")
   
 barp <- ggplot(data = df, aes(x = reorder(county, order_id), y = variable_bar)) +
-  geom_bar(color = "transparent", stat = "identity", aes(fill = as.factor(rural))) +
+  geom_bar(color = "transparent", stat = "identity", aes(fill = as.factor(rural), text = hover_text)) +
   scale_fill_manual(values = c("#4e72aa", "#94bcda")) +
   labs(title = paste(alias, "by PA county", sep = " "),
        caption = "Pennsylvania Affordable Housing Dashboard, Housing Initiative at Penn, July 2025, https://housinginitiative.shinyapps.io/PHFA_Housing_Dashboard/. ", 
@@ -177,7 +182,8 @@ barp <- ggplot(data = df, aes(x = reorder(county, order_id), y = variable_bar)) 
   theme(legend.position = "bottom") +
   coord_flip() 
 
-ggplotly(barp) %>%
+ggplotly(barp,
+         tooltip = "text") %>%
   plotly::layout(
     margin = list(l = 50, r = 50, b = 100, t = 50),
     annotations = list(x = 0.5, y = -0.2, text = "Source: Pennsylvania Affordable Housing Dashboard, Housing Initiative at Penn, July 2025, https://housinginitiative.shinyapps.io/PHFA_Housing_Dashboard/. ",
@@ -228,7 +234,10 @@ alias_x <- variable_aliases[x]
 alias_y <- variable_aliases[y]
 
 # custom hover text
-df$hover_text <- paste("County: ", df$county, "<br>")
+df$hover_text <- paste(alias_x, ":", df$variable_scatter_x, "<br>",
+                       alias_y, ":", df$variable_scatter_y, "<br>",
+                       "Rural or Urban :", df$rural, "<br>",
+                       "County :", df$county, "<br>")
 
 scatterp <- ggplot(df, aes(x = variable_scatter_x, y = variable_scatter_y)) +
   geom_smooth(se = FALSE, colour = "gray", size = 0.5) +
@@ -240,7 +249,7 @@ scatterp <- ggplot(df, aes(x = variable_scatter_x, y = variable_scatter_y)) +
        x = alias_x, y = alias_y) + theme_minimal()
 
 ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
-         hoverinfo = "text") %>%
+         tooltip = "text") %>%
   plotly::layout(margin = list(l = 50, r = 50, b = 100, t = 50),
                  annotations = list(x = 0.5, y = -0.2, text = "Source: Pennsylvania Affordable Housing Dashboard, Housing Initiative at Penn, July 2025, https://housinginitiative.shinyapps.io/PHFA_Housing_Dashboard/. ",
                                     xref='paper', yref='paper', showarrow = F,
