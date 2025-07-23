@@ -1,0 +1,12 @@
+name: hiptest
+title: hiptest
+username: housinginitiative
+account: housinginitiative
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15114757
+bundleId: 10663181
+url: https://housinginitiative.shinyapps.io/hiptest/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

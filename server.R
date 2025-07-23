@@ -59,7 +59,7 @@ variable_aliases <- c(
 "mortgage_burdened_pct2023" = "Mortgage burdened households (2023)",
 "med_gross_rent2023" = "Median gross rent (2023)",
 "housing_balance" = "Affordable housing shortage (2021)",
-"totalresunitpermits24" = "Permits Approved for Residential Untis (2024)"
+"totalresunitpermits24" = "Permits approved for residential units (2024)"
 )
 
 # prefixes for legend labels 
@@ -202,20 +202,20 @@ ggplotly(barp,
 #### leaflet menu indicator information #####
   output$indicator_desc_text <- renderText({
   description <- c(
-    "owner_occ_hh_pct2023" = "Homeownership rate (%) is the percentage of households that own their homes. A higher rate indicates a greater proportion of homeowners in the area.",
-    "white_own_occ_hh_pct2023" = "White homeownership rate (%) is the percentage of white households that own their homes. A higher rate indicates a greater proportion of white homeowners in the area.",
-    "black_own_occ_hh_pct2023" = "Black homeownership rate (%) is the percentage of Black households that own their homes. A higher rate indicates a greater proportion of Black homeowners in the area.",
-    "hisp_lat_own_occ_hh_pct2023" = "Hispanic or Latinx homeownership rate (%) is the percentage of Hispanic or Latinx households that own their homes. A higher rate indicates a greater proportion of Hispanic or Latinx homeowners in the area.",
-    "renter_occ_hh_pct2023" = "The rentership rate shows the share of households in a county that rent their homes. Younger households and households with limited incomes are more likely to rent than older households and households with higher incomes.",
-    "renter_vacant_pct2023" = "Vacant rental units (%) represents the percentage of rental units that are currently unoccupied. A higher percentage can suggest that there's a surplus of rental housing or potentially decreased demand.",
-    "med_age_home2023" = "Median age of home (years) indicates the midpoint age of homes in a specific area. Older median ages can suggest historical or older neighborhoods, while lower values might indicate newer developments.",
-    "med_home_value2023" = "Median home value ($) is the midpoint value of homes in the area. This can provide an insight into the overall affordability and property values of a region.",
-    "internet_hh_pct2023" = "Households with internet access (%) is the percentage of households that have access to the internet. This can provide insights into the area's technological infrastructure and development.",
-    "rent_burdened_pct2023" = "Rent-burdened households represents the share of renter households with incomes less than $35,000 that spend 30% or more of their income on rent. Low-income households that spend a high share of their income on housing costs have limited residual income to spend on other household expenses, much less save for emergencies. These households are more vulnerable to setbacks to their household finances and to more wide scale economic shocks.",
-    "mortgage_burdened_pct2023" = "Mortgage burdened households (%) indicates the low-income households spending 30% or more of their income on mortgage payments. Higher percentages may show potential financial strain for low-income homeowners.",
-    "med_gross_rent2023" = "Median gross rent conveys the midpoint amount that households pay in total for their contract rent, utilities, and fuel costs. Low-income households living in areas with higher median gross rent tend to have greater challenges with housing affordability.",
-    "housing_balance" = "Affordable housing shortage (units) refers to the difference between the demand for rental units affordable to extremely low-income households (income < 30% of area median income) and the supply available. A positive number indicates a shortage of affordable housing units.",
-    "totalresunitpermits24" = "Residential building units specifically include approvals of new, privately-owned residential construction in 2024.")
+    "owner_occ_hh_pct2023" = "Homeownership rate (%) is the percentage of households that own their homes. A higher rate indicates a greater proportion of homeowners in the area. Hover over a county to see that county's rate and the state average rate.",
+    "white_own_occ_hh_pct2023" = "White homeownership rate (%) is the percentage of white households that own their homes. A higher rate indicates a greater proportion of white homeowners in the area. Hover over a county to see that county's rate and the state average rate.",
+    "black_own_occ_hh_pct2023" = "Black homeownership rate (%) is the percentage of Black households that own their homes. A higher rate indicates a greater proportion of Black homeowners in the area. Hover over a county to see that county's rate and the state average rate.",
+    "hisp_lat_own_occ_hh_pct2023" = "Hispanic or Latinx homeownership rate (%) is the percentage of Hispanic or Latinx households that own their homes. A higher rate indicates a greater proportion of Hispanic or Latinx homeowners in the area. Hover over a county to see that county's rate and the state average rate.",
+    "renter_occ_hh_pct2023" = "The rentership rate shows the share of households in a county that rent their homes. Younger households and households with limited incomes are more likely to rent than older households and households with higher incomes. Hover over a county to see that county's rate and the state average rate.",
+    "renter_vacant_pct2023" = "Vacant rental units (%) represents the percentage of rental units that are currently unoccupied. A higher percentage can suggest that there's a surplus of rental housing or potentially decreased demand. Hover over a county to see that county's rate and the state average rate.",
+    "med_age_home2023" = "Median age of home (years) indicates the midpoint age of homes in a specific area. Older median ages can suggest historical or older neighborhoods, while lower values might indicate newer developments. Hover over a county to see that county's median age and the state median age.",
+    "med_home_value2023" = "Median home value ($) is the midpoint value of homes in the area. This can provide an insight into the overall affordability and property values of a region. Hover over a county to see that county's median value and the state median value.",
+    "internet_hh_pct2023" = "Households with internet access (%) is the percentage of households that have access to the internet. This can provide insights into the area's technological infrastructure and development. Hover over a county to see that county's rate and the state average rate.",
+    "rent_burdened_pct2023" = "Rent-burdened households represents the share of renter households with incomes less than $35,000 that spend 30% or more of their income on rent. Low-income households that spend a high share of their income on housing costs have limited residual income to spend on other household expenses, much less save for emergencies. These households are more vulnerable to setbacks to their household finances and to more wide scale economic shocks. Hover over a county to see that county's rate and the state average rate.",
+    "mortgage_burdened_pct2023" = "Mortgage burdened households (%) indicates the low-income households spending 30% or more of their income on mortgage payments. Higher percentages may show potential financial strain for low-income homeowners. Hover over a county to see that county's rate and the state average rate.",
+    "med_gross_rent2023" = "Median gross rent conveys the midpoint amount that households pay in total for their contract rent, utilities, and fuel costs. Low-income households living in areas with higher median gross rent tend to have greater challenges with housing affordability. Hover over a county to see that county's madian value and the state median value.",
+    "housing_balance" = "Affordable housing shortage (units) refers to the difference between the demand for rental units affordable to extremely low-income households (income < 30% of area median income) and the supply available. A positive number indicates a shortage of affordable housing units. Hover over a county to see that county's shortage and the state total shortage.",
+    "totalresunitpermits24" = "Residential building units specifically include approvals of new, privately-owned residential construction in 2024. Hover over a county to see that county's total permits and the state total permits.")
     v <- input$variable
     desc <- description[v]
     return(desc)
@@ -285,11 +285,12 @@ ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
   })
   
   output$sum <- renderTable({
-    data.frame(quartile_1 = quantile(dat()$variable_tab, probs = 0.25, na.rm = TRUE),
+    data.frame(minimum = max(dat()$variable_tab, na.rm = TRUE),
+               percentile_25th = quantile(dat()$variable_tab, probs = 0.25, na.rm = TRUE),
                mean = mean(dat()$variable_tab, na.rm = TRUE),
                median = median(dat()$variable_tab, na.rm = TRUE),
-               quartile_3 = quantile(dat()$variable_tab, probs = 0.75, na.rm = TRUE),
-               max = max(dat()$variable_tab, na.rm = TRUE)) 
+               percentile_75th = quantile(dat()$variable_tab, probs = 0.75, na.rm = TRUE),
+               maximum = max(dat()$variable_tab, na.rm = TRUE)) 
     
     
   })

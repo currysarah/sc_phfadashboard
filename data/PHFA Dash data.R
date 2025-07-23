@@ -303,7 +303,7 @@ permits <- st_read("co2024a_clean.csv") %>%
   select(county, totalresunitpermits24)
 
 permits_pa <- permits %>%
-  summarize(totalresunitpermits24 = round(mean(totalresunitpermits24), 0))
+  summarize(totalresunitpermits24 = round(sum(totalresunitpermits24), 0))
 
 #### Write panel #### 
 dat <- dat %>%
@@ -322,11 +322,11 @@ panel.sf <- dat %>%
   left_join(dat, by = "county") %>%
   st_as_sf()
 
-st_write(panel.sf, "PHFA_dash_data_June.25.geojson", driver = "GeoJSON")
+st_write(panel.sf, "PHFA_dash_data_June.25.geojson", driver = "GeoJSON", delete_dsn = TRUE)
 
 state_avg = cbind(chas_pa, dat_PA, permits_pa)
 
-st_write(state_avg, "state_avg_06-25.csv", driver = "CSV", append = TRUE)
+st_write(state_avg, "state_avg_06-25.csv", driver = "CSV", delete_dsn = TRUE)
 
 
 
