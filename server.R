@@ -52,7 +52,7 @@ variable_aliases <- c(
 "hisp_lat_own_occ_hh_pct2023" = "Hispanic or Latinx homeownership rate (2023)",
 "renter_occ_hh_pct2023" = "Rentership rate (2023)",
 "renter_vacant_pct2023" = "Vacant rental units (2023)",
-"med_age_home2023" = "Median age of home (2023)",
+"med_age_home2023" = "Median year home built (2023)",
 "med_home_value2023" = "Median home value (2023)",
 "internet_hh_pct2023" = "Households with internet access (2023)",
 "rent_burdened_pct2023" = "Rent burdened households (2023)",
@@ -88,7 +88,7 @@ variable_suffix <- c(
   "hisp_lat_own_occ_hh_pct2023" = "%",
   "renter_occ_hh_pct2023" = "%",
   "renter_vacant_pct2023" = "%",
-  "med_age_home2023" = " years",
+  "med_age_home2023" = "",
   "med_home_value2023" = "",
   "internet_hh_pct2023" = "%",
   "rent_burdened_pct2023" = "%",
@@ -106,7 +106,7 @@ variable_type <- c(
   "hisp_lat_own_occ_hh_pct2023" = "percent",
   "renter_occ_hh_pct2023" = "percent",
   "renter_vacant_pct2023" = "percent",
-  "med_age_home2023" = "",
+  "med_age_home2023" = "year",
   "med_home_value2023" = "currency",
   "internet_hh_pct2023" = "percent",
   "rent_burdened_pct2023" = "percent",
@@ -164,10 +164,12 @@ server <- function(input, output, session) {
                                       rural == 0 ~ "Urban"))
     
     v <- input$variable_bar
+    prefix <- variable_prefix[v]
     alias <- variable_aliases[v]
+    suffix <- variable_suffix[v]
     
 ##custom hover text##
-    df$hover_text <- paste(alias, ":", df$variable_bar, "<br>",
+    df$hover_text <- paste(alias, ":", prefix, df$variable_bar, suffix, "<br>",
                            "Rural or Urban :", df$rural, "<br>",
                            "County :", df$county, "<br>")
   
@@ -208,7 +210,7 @@ ggplotly(barp,
     "hisp_lat_own_occ_hh_pct2023" = "Hispanic or Latinx homeownership rate (%) is the percentage of Hispanic or Latinx households that own their homes. A higher rate indicates a greater proportion of Hispanic or Latinx homeowners in the area. Hover over a county to see that county's rate and the state average rate.",
     "renter_occ_hh_pct2023" = "The rentership rate shows the share of households in a county that rent their homes. Younger households and households with limited incomes are more likely to rent than older households and households with higher incomes. Hover over a county to see that county's rate and the state average rate.",
     "renter_vacant_pct2023" = "Vacant rental units (%) represents the percentage of rental units that are currently unoccupied. A higher percentage can suggest that there's a surplus of rental housing or potentially decreased demand. Hover over a county to see that county's rate and the state average rate.",
-    "med_age_home2023" = "Median age of home (years) indicates the midpoint age of homes in a specific area. Older median ages can suggest historical or older neighborhoods, while lower values might indicate newer developments. Hover over a county to see that county's median age and the state median age.",
+    "med_age_home2023" = "Median year home built indicates the midpoint age of homes in a specific area. Older median years can suggest historical neighborhoods, while later median years might indicate newer developments. Hover over a county to see that county's median year of home construction and the state median year of home construction.",
     "med_home_value2023" = "Median home value ($) is the midpoint value of homes in the area. This can provide an insight into the overall affordability and property values of a region. Hover over a county to see that county's median value and the state median value.",
     "internet_hh_pct2023" = "Households with internet access (%) is the percentage of households that have access to the internet. This can provide insights into the area's technological infrastructure and development. Hover over a county to see that county's rate and the state average rate.",
     "rent_burdened_pct2023" = "Rent-burdened households represents the share of renter households with incomes less than $35,000 that spend 30% or more of their income on rent. Low-income households that spend a high share of their income on housing costs have limited residual income to spend on other household expenses, much less save for emergencies. These households are more vulnerable to setbacks to their household finances and to more wide scale economic shocks. Hover over a county to see that county's rate and the state average rate.",
@@ -230,12 +232,18 @@ ggplotly(barp,
 
 x <- input$variable_scatter_x
 y <- input$variable_scatter_y
+prefix_x <- variable_prefix[x]
+prefix_y <- variable_prefix[y]
 alias_x <- variable_aliases[x]
 alias_y <- variable_aliases[y]
+suffix_x <- variable_suffix[x]
+suffix_y <- variable_suffix[y]
+type_x <- variable_type[x]
+type_y <- variable_type[y]
 
 # custom hover text
-df$hover_text <- paste(alias_x, ":", df$variable_scatter_x, "<br>",
-                       alias_y, ":", df$variable_scatter_y, "<br>",
+df$hover_text <- paste(alias_x, ":", prefix_x, df$variable_scatter_x, suffix_x, "<br>",
+                       alias_y, ":", prefix_y, df$variable_scatter_y, suffix_y, "<br>",
                        "Rural or Urban :", df$rural, "<br>",
                        "County :", df$county, "<br>")
 
@@ -255,6 +263,8 @@ ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
                                     xref='paper', yref='paper', showarrow = F,
                                     xanchor='center', yanchor='bottom', xshift=0, yshift=0,
                                     font = list(size = 12, color = "gray")),
+                 xaxis = list(showticksuffix = "all", ticksuffix = "%"),
+                 yaxis = list(showticksuffix = "all", ticksuffix = "%"),
                  legend = list(
                    orientation = "h",
                    x = "0.5",
@@ -309,15 +319,16 @@ ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
     prefix <- variable_prefix[v]
     suffix <- variable_suffix[v]
     alias <- variable_aliases[v]
+    type <- variable_type[v]
     
     # Format the county value
     val_county <- dat.sf()$variable
-    formatted_val_county <- format(val_county, big.mark = ",", scientific = FALSE)
+    formatted_val_county <- format(val_county, big.mark = ifelse(type == "year", "", ","), scientific = FALSE)
     formatted_val_county <- gsub("\\.0+$", "", formatted_val_county)
     
     # Format the state average value
     val_state <- round(as.numeric(pa_avg()$variable))
-    formatted_val_state <- format(val_state, big.mark = ",", scientific = FALSE)
+    formatted_val_state <- format(val_state, big.mark = ifelse(type == "year", "", ","), scientific = FALSE)
     formatted_val_state <- gsub("\\.0+$", "", formatted_val_state)
     
     sprintf(
@@ -405,8 +416,8 @@ ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
                   labels <- vector("character", length(cuts) - 1)
                   for (i in 1:(length(cuts) - 1)) {
                     # Apply the prefix and suffix to each bound + format numbers with commas
-                    lower_bound <- paste0(prefix, formatC(cuts[i], format = "f", big.mark = ",", digits = 0), suffix)
-                    upper_bound <- paste0(prefix, formatC(cuts[i + 1], format = "f", big.mark = ",", digits = 0), suffix)
+                    lower_bound <- paste0(prefix, formatC(cuts[i], format = "f", big.mark = ifelse(variableType == "year", "", ","), digits = 0), suffix)
+                    upper_bound <- paste0(prefix, formatC(cuts[i + 1], format = "f", big.mark = ifelse(variableType == "year", "", ","), digits = 0), suffix)
                     # Construct the label for each bin
                     labels[i] <- paste(lower_bound, "-", upper_bound)
                   }

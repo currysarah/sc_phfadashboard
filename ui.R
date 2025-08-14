@@ -62,7 +62,7 @@ ui <- navbarPage(
           ),
           "Housing stock" = list(
             "Vacant rental units (2023)" = "renter_vacant_pct2023",
-            "Median age of home (2023)" = "med_age_home2023",
+            "Median year home built (2023)" = "med_age_home2023",
             # "Affordable rent units available" = "afford_avail_units",
             "Affordable housing shortage (2021)" = "housing_balance",
             "Permits approved for residential units (2024)" = "totalresunitpermits24"
@@ -104,7 +104,7 @@ ui <- navbarPage(
             ),
             "Housing stock" = list(
               "Vacant rental units (2023)" = "renter_vacant_pct2023",
-              "Median age of home (2023)" = "med_age_home2023",
+              "Median year home built (2023)" = "med_age_home2023",
               # "Affordable rent units available" = "afford_avail_units",
               "Affordable housing shortage (2021)" = "housing_balance",
               "Permits approved for residential units (2024)" = "totalresunitpermits24"
@@ -227,7 +227,7 @@ ui <- navbarPage(
                    ),
                    "Housing stock" = list(
                      "Vacant rental units (2023)" = "renter_vacant_pct2023",
-                     "Median age of home (2023)" = "med_age_home2023",
+                     "Median year home built (2023)" = "med_age_home2023",
                      # "Affordable rent units available" = "afford_avail_units",
                      "Affordable housing shortage (2021)" = "housing_balance",
                      "Permits approved for residential units (2024)" = "totalresunitpermits24"
@@ -255,7 +255,7 @@ ui <- navbarPage(
                    ),
                    "Housing stock" = list(
                      "Vacant rental units (2023)" = "renter_vacant_pct2023",
-                     "Median age of home (2023)" = "med_age_home2023",
+                     "Median year home built (2023)" = "med_age_home2023",
                      # "Affordable rent units available" = "afford_avail_units",
                      "Affordable housing shortage (2021)" = "housing_balance",
                      "Permits approved for residential units (2024)" = "totalresunitpermits24"
@@ -301,7 +301,7 @@ ui <- navbarPage(
                    ),
                    "Housing stock" = list(
                      "Vacant rental units (2023)" = "renter_vacant_pct2023",
-                     "Median age of home (2023)" = "med_age_home2023",
+                     "Median year home built (2023)" = "med_age_home2023",
                      # "Affordable rent units available" = "afford_avail_units",
                      "Affordable housing shortage (2021)" = "housing_balance",
                      "Permits approved for residential units (2024)" = "totalresunitpermits24"
@@ -331,13 +331,14 @@ ui <- navbarPage(
            sidebarLayout(
              sidebarPanel(
                img(src = 'PA.png', width = "100%"),
+               p("St. Lawrence Catholic Church, Harrisburg, PA"),
                p("Source: The Brookings Institute.")
              ),
              mainPanel(
                h2("Pennsylvania Housing Explorer"),
                p("Last update: July 1, 2025"),
                p(
-                 "This dashboard is a collaboration between the Pennsylvania Housing Finance Agency and the Housing Initiative at Penn. The dashboard shows current housing trends across Pennsylvania counties based on data from the U.S. Census Bureau 5-year American Community Survey and U.S. Department of Housing and Urban Development’s Comprehensive Housing Affordability Strategy."
+                 "This dashboard is a collaboration between the Pennsylvania Housing Finance Agency and the Housing Initiative at Penn. The dashboard shows current housing trends across Pennsylvania counties based on data from the U.S. Census Bureau 5-year American Community Survey and U.S. Department of Housing and Urban Development’s Comprehensive Housing Affordability Strategy dataset."
                ),
                h4("About Pennsylvania Housing Finance Agency"),
                p(
@@ -355,8 +356,8 @@ ui <- navbarPage(
                p(
                  "All data in this dashboard comes from the",
                  a(href = "https://www.census.gov/programs-surveys/acs/news/data-releases.2023.html#list-tab-1133175109", "American Community Survey's"),
-                 " 2023 5-year-estimates, with the exception of the Affordable Housing Shortage variable, which is from HUD’s Comprehensive Housing Affordability Strategy dataset (2021). All census data was accessed through the US Census Bureau API using the tidycensus package in R. All data processing and preparation was completed using the following R packages: dplyr, tigris, sf, stringr, tidyr. This dashboard was made entirely using the R-language in Posit's Shiny app interface, and visualizations were made using the R packages leaflet, plotly, ggplot2, and pander. Full documentation for this project can be found here:",
-                 a(href = 'https://github.com/housinginitiative/PHFA-Housing-Dash', 'github repository')
+                 " 2023 5-year-estimates, with the exception of the Affordable Housing Shortage variable, which is from HUD’s Comprehensive Housing Affordability Strategy dataset (2021). All census data was accessed through the US Census Bureau API using the tidycensus package in R. All data processing and preparation was completed using the following R packages: dplyr, tigris, sf, stringr, tidyr. This dashboard was made entirely using the R-language in Posit's Shiny app interface, and visualizations were made using the R packages leaflet, plotly, ggplot2, and pander. Full documentation for this project can be found here",
+                 a(href = 'https://github.com/housinginitiative/PHFA-Housing-Dash', " at the dashboard's GitHub repository")
                ),
                h4("Get in touch"),
                p(
