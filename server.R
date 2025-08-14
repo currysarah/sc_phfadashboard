@@ -425,21 +425,21 @@ ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
                               "font-size" = "14px",
                               "text-shadow" = "-0.25px -0.25px 0 #607d8b, 0.25px -0.25px 0 #607d8b, -0.25px 0.25px 0 #607d8b, 0.25px 0.25px 0 #607d8b" # Dark gray outline
                               )),
-                          group = "county names") %>%
+                          group = "County Names") %>%
       addPolygons(data = rural,
         color = "orchid",
         weight = 5,
         opacity = 1,
-        group  = "rural counties") %>%
-      addLegend(group = "rural counties",
+        group  = "Rural Counties") %>%
+      addLegend(group = "Rural Counties",
                 colors = "orchid",
                 labels = "Rural Counties",
                 position = "bottomright") %>%
       addLayersControl(position = "bottomright",
-        overlayGroups = c("rural counties", "county names"), 
+        overlayGroups = c("Rural Counties", "County Names"), 
         options = layersControlOptions(collapsed = F))%>%
-      groupOptions("county names", zoomLevels = 8:100) %>%
-      groupOptions("rural counties", zoomLevels = FALSE)
+      groupOptions("County Names", zoomLevels = 8:100) %>%
+      groupOptions("Rural Counties", zoomLevels = FALSE)
   })
 
   
