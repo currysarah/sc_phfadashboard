@@ -5,7 +5,7 @@ account: housinginitiative
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 15114757
-bundleId: 10663181
+bundleId: 10778332
 url: https://housinginitiative.shinyapps.io/hiptest/
 version: 1
 asMultiple: FALSE

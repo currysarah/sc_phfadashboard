@@ -167,11 +167,12 @@ server <- function(input, output, session) {
     prefix <- variable_prefix[v]
     alias <- variable_aliases[v]
     suffix <- variable_suffix[v]
+    type <- variable_type[v]
     
 ##custom hover text##
-    df$hover_text <- paste(alias, ":", prefix, df$variable_bar, suffix, "<br>",
-                           "Rural or Urban :", df$rural, "<br>",
-                           "County :", df$county, "<br>")
+    df$hover_text <- paste0(alias, ": ", prefix, format(df$variable_bar, big.mark = ifelse(type == "year", "", ",")), suffix, "<br>",
+                           "Rural or Urban: ", df$rural, "<br>",
+                           "County: ", df$county, "<br>")
   
 barp <- ggplot(data = df, aes(x = reorder(county, order_id), y = variable_bar)) +
   geom_bar(color = "transparent", stat = "identity", aes(fill = as.factor(rural), text = hover_text)) +
@@ -180,6 +181,7 @@ barp <- ggplot(data = df, aes(x = reorder(county, order_id), y = variable_bar)) 
        caption = "Pennsylvania Affordable Housing Dashboard, Housing Initiative at Penn, July 2025, https://housinginitiative.shinyapps.io/PHFA_Housing_Dashboard/. ", 
        fill = "",
        y = alias, x = "") +
+  scale_y_continuous(labels = scales::number_format(prefix = prefix, suffix = suffix, big.mark = ifelse(type == "year", "", ","))) + 
   theme_minimal() +
   theme(legend.position = "bottom") +
   coord_flip() 
@@ -192,6 +194,8 @@ ggplotly(barp,
                             xref='paper', yref='paper', showarrow = F, 
                             xanchor='center', yanchor='bottom', xshift=0, yshift=0,
                             font = list(size = 12, color = "gray")),
+    yaxis = list(showticksuffix = "first",
+                 ticksuffix = "%"),
     legend = list(
       orientation = "h",
       x = "0.5",
@@ -214,7 +218,7 @@ ggplotly(barp,
     "med_home_value2023" = "Median home value ($) is the midpoint value of homes in the area. This can provide an insight into the overall affordability and property values of a region. Hover over a county to see that county's median value and the state median value.",
     "internet_hh_pct2023" = "Households with internet access (%) is the percentage of households that have access to the internet. This can provide insights into the area's technological infrastructure and development. Hover over a county to see that county's rate and the state average rate.",
     "rent_burdened_pct2023" = "Rent-burdened households represents the share of renter households with incomes less than $35,000 that spend 30% or more of their income on rent. Low-income households that spend a high share of their income on housing costs have limited residual income to spend on other household expenses, much less save for emergencies. These households are more vulnerable to setbacks to their household finances and to more wide scale economic shocks. Hover over a county to see that county's rate and the state average rate.",
-    "mortgage_burdened_pct2023" = "Mortgage burdened households (%) indicates the low-income households spending 30% or more of their income on mortgage payments. Higher percentages may show potential financial strain for low-income homeowners. Hover over a county to see that county's rate and the state average rate.",
+    "mortgage_burdened_pct2023" = "Mortgage burdened households rate (%) indicates the low-income households spending 30% or more of their income on mortgage payments. Higher percentages may show potential financial strain for low-income homeowners. Hover over a county to see that county's rate and the state average rate.",
     "med_gross_rent2023" = "Median gross rent conveys the midpoint amount that households pay in total for their contract rent, utilities, and fuel costs. Low-income households living in areas with higher median gross rent tend to have greater challenges with housing affordability. Hover over a county to see that county's madian value and the state median value.",
     "housing_balance" = "Affordable housing shortage (units) refers to the difference between the demand for rental units affordable to extremely low-income households (income < 30% of area median income) and the supply available. A positive number indicates a shortage of affordable housing units. Hover over a county to see that county's shortage and the state total shortage.",
     "totalresunitpermits24" = "Residential building units specifically include approvals of new, privately-owned residential construction in 2024. Hover over a county to see that county's total permits and the state total permits.")
@@ -242,10 +246,10 @@ type_x <- variable_type[x]
 type_y <- variable_type[y]
 
 # custom hover text
-df$hover_text <- paste(alias_x, ":", prefix_x, df$variable_scatter_x, suffix_x, "<br>",
-                       alias_y, ":", prefix_y, df$variable_scatter_y, suffix_y, "<br>",
-                       "Rural or Urban :", df$rural, "<br>",
-                       "County :", df$county, "<br>")
+df$hover_text <- paste0(alias_x, ": ", prefix_x, format(df$variable_scatter_x, big.mark = ifelse(type_x == "year", "", ",")), suffix_x, "<br>",
+                       alias_y, ": ", prefix_y, format(df$variable_scatter_y, big.mark = ifelse(type_y == "year", "", ",")), suffix_y, "<br>",
+                       "Rural or Urban: ", df$rural, "<br>",
+                       "County: ", df$county, "<br>")
 
 scatterp <- ggplot(df, aes(x = variable_scatter_x, y = variable_scatter_y)) +
   geom_smooth(se = FALSE, colour = "gray", size = 0.5) +
@@ -253,6 +257,8 @@ scatterp <- ggplot(df, aes(x = variable_scatter_x, y = variable_scatter_y)) +
              aes(color = rural, text = hover_text), 
              size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#4e72aa", "#94bcda"), name = "") +
+  scale_x_continuous(labels = scales::number_format(prefix = prefix_x, suffix = suffix_x, big.mark = ifelse(type_x == "year", "", ","))) + 
+  scale_y_continuous(labels = scales::number_format(prefix = prefix_y, suffix = suffix_y, big.mark = ifelse(type_y == "year", "", ","))) + 
   labs(title = paste(alias_x, "as a function of", alias_y, sep = " "),
        x = alias_x, y = alias_y) + theme_minimal()
 
@@ -263,8 +269,6 @@ ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
                                     xref='paper', yref='paper', showarrow = F,
                                     xanchor='center', yanchor='bottom', xshift=0, yshift=0,
                                     font = list(size = 12, color = "gray")),
-                 xaxis = list(showticksuffix = "all", ticksuffix = "%"),
-                 yaxis = list(showticksuffix = "all", ticksuffix = "%"),
                  legend = list(
                    orientation = "h",
                    x = "0.5",

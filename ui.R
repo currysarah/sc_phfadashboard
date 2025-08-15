@@ -53,7 +53,7 @@ ui <- navbarPage(
             "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
             "Hispanic or Latinx homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
             "Median home value (2023)" = "med_home_value2023",
-            "Mortgage burdened households (2023)" = "mortgage_burdened_pct2023"
+            "Mortgage burdened households rate(2023)" = "mortgage_burdened_pct2023"
           ),
           "Renter households" = list(
             "Rentership rate (2023)" = "renter_occ_hh_pct2023",
@@ -95,7 +95,7 @@ ui <- navbarPage(
               "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
               "Hispanic or Latinx homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
               "Median home value (2023)" = "med_home_value2023",
-              "Mortgage burdened households (2023)" = "mortgage_burdened_pct2023"
+              "Mortgage burdened households rate (2023)" = "mortgage_burdened_pct2023"
             ),
             "Renter households" = list(
               "Rentership rate (2023)" = "renter_occ_hh_pct2023",
@@ -218,7 +218,7 @@ ui <- navbarPage(
                      "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
                      "Hispanic or Latinx homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
                      "Median home value (2023)" = "med_home_value2023",
-                     "Mortgage burdened households (2023)" = "mortgage_burdened_pct2023"
+                     "Mortgage burdened households rate (2023)" = "mortgage_burdened_pct2023"
                    ),
                    "Renter households" = list(
                      "Rentership rate (2023)" = "renter_occ_hh_pct2023",
@@ -246,7 +246,7 @@ ui <- navbarPage(
                      "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
                      "Hispanic or Latinx homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
                      "Median home value (2023)" = "med_home_value2023",
-                     "Mortgage burdened households (2023)" = "mortgage_burdened_pct2023"
+                     "Mortgage burdened households rate (2023)" = "mortgage_burdened_pct2023"
                    ),
                    "Renter households" = list(
                      "Rentership rate (2023)" = "renter_occ_hh_pct2023",
@@ -292,7 +292,7 @@ ui <- navbarPage(
                      "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
                      "Hispanic or Latinx homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
                      "Median home value (2023)" = "med_home_value2023",
-                     "Mortgage burdened households (2023)" = "mortgage_burdened_pct2023"
+                     "Mortgage burdened households rate (2023)" = "mortgage_burdened_pct2023"
                    ),
                    "Renter households" = list(
                      "Rentership rate (2023)" = "renter_occ_hh_pct2023",
@@ -369,8 +369,12 @@ ui <- navbarPage(
         <a href='mailto:asechrist@phfa.org'>asechrist@phfa.org</a>"
                  )
                ),
-        img(src = 'hip_logo.png', height = 140),
-        img(src = 'phfa_logo.png', height = 140)
+               tags$a(
+                 tags$img(src = 'hip_logo.png', height = 140), href = "https://www.housinginitiative.org/"
+                 ),
+               tags$a(
+                 tags$img(src = 'phfa_logo.png', height = 140), href = "https://www.phfa.org/"
+               ),
              )
            ))
 )
