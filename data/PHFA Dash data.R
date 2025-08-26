@@ -79,7 +79,7 @@ dat_PA <- get_acs(geography = "state",
          renter_occ_hh_pct = ifelse(total_hhE > 0, round(100 * renter_occ_hhE / total_hhE), 0),
          
          # vacant rentals pct
-         renter_vacant_pct = ifelse(renter_occ_hhE > 0, round(100 * vacant_rental_unitsE / renter_occ_hhE), 0),
+         renter_vacant_pct = ifelse(renter_occ_hhE > 0, round(100 * vacant_rental_unitsE / (renter_occ_hhE + vacant_rental_unitsE)), 0),
          
          # median home age
          med_age_home = med_year_builtE,

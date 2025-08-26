@@ -299,7 +299,7 @@ ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
   })
   
   output$sum <- renderTable({
-    data.frame(minimum = max(dat()$variable_tab, na.rm = TRUE),
+    data.frame(minimum = min(dat()$variable_tab, na.rm = TRUE),
                percentile_25th = quantile(dat()$variable_tab, probs = 0.25, na.rm = TRUE),
                mean = mean(dat()$variable_tab, na.rm = TRUE),
                median = median(dat()$variable_tab, na.rm = TRUE),
@@ -448,7 +448,7 @@ ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
         group  = "Rural Counties") %>%
       addLegend(group = "Rural Counties",
                 colors = "orchid",
-                labels = "Rural Counties",
+                labels = "Rural Counties - as defined by ACS<br/>See GitHub repository for more detail",
                 position = "bottomright") %>%
       addLayersControl(position = "bottomright",
         overlayGroups = c("Rural Counties", "County Names"), 
