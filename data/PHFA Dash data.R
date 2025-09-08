@@ -32,6 +32,7 @@ dat_PA <- get_acs(geography = "state",
                                 "medhhinc" = "B19013A_001",
                                 "med_owner_costs_mortgaged" = "B25088_002",
                                 "med_gross_rent" = "B25064_001",
+                                "total_housing_units" = "B25001_001",
                                 
                                 # rent burden
                                 "rent_inc_less10k_20less" = "B25074_003", #less 10k under 20%
@@ -106,7 +107,8 @@ dat_PA <- get_acs(geography = "state",
          mortgage_burdened_pct = ifelse(owner_low_inc > 0, round(100 * (income_bel35k_mort_more30 / owner_low_inc)), 0),
          county = word(NAME, 1)) %>%
   rename(med_gross_rent = med_gross_rentE,
-         med_home_value = med_home_valueE) %>%
+         med_home_value = med_home_valueE,
+         total_housing_units = total_housing_unitsE) %>%
   dplyr::select(owner_occ_hh_pct, 
                 white_own_occ_hh_pct,
                 black_own_occ_hh_pct,
@@ -118,7 +120,8 @@ dat_PA <- get_acs(geography = "state",
                 internet_hh_pct,
                 rent_burdened_pct,
                 mortgage_burdened_pct,
-                med_gross_rent)
+                med_gross_rent,
+                total_housing_units)
 
 new_column_names <- paste0(names(dat_PA), 2023)
 
@@ -143,6 +146,7 @@ dat23 <- get_acs(geography = "county",
                                "medhhinc" = "B19013A_001",
                                "med_owner_costs_mortgaged" = "B25088_002",
                                "med_gross_rent" = "B25064_001",
+                               "total_housing_units" = "B25001_001",
                                
                                # rent burden
                                "rent_inc_less10k_20less" = "B25074_003", #less 10k under 20%
@@ -214,7 +218,8 @@ dat23 <- get_acs(geography = "county",
          
          rent_burdened_pct = ifelse(renter_low_inc > 0, round(100 * (income_bel35k_rent_more30 / renter_low_inc)), 0)) %>% # rent burdened pct
   rename(med_gross_rent = med_gross_rentE,
-         med_home_value = med_home_valueE) %>%
+         med_home_value = med_home_valueE,
+         total_housing_units = total_housing_unitsE) %>%
   
   #Fix NAs
   mutate(across(everything(), ~ ifelse(is.nan(.), NA, .))) %>%
@@ -231,7 +236,8 @@ dat23 <- get_acs(geography = "county",
                 internet_hh_pct,
                 rent_burdened_pct,
                 mortgage_burdened_pct,
-                med_gross_rent) 
+                med_gross_rent,
+                total_housing_units) 
 
 new_column_names <- paste0(names(dat23), 2023)
 
@@ -320,11 +326,13 @@ panel.sf <- dat %>%
   st_centroid() %>%
   st_drop_geometry() %>%
   left_join(dat, by = "county") %>%
-  st_as_sf()
+  st_as_sf() %>%
+  mutate(resunitpermitsrate24 = ifelse(housing_balance != 0, round(abs(totalresunitpermits24/housing_balance)*100), 0))
 
 st_write(panel.sf, "PHFA_dash_data_June.25.geojson", driver = "GeoJSON", delete_dsn = TRUE)
 
-state_avg = cbind(chas_pa, dat_PA, permits_pa)
+state_avg <- cbind(chas_pa, dat_PA, permits_pa) %>%
+  mutate(resunitpermitsrate24 = ifelse(housing_balance != 0, round(abs(totalresunitpermits24/housing_balance)*100), 0))
 
 st_write(state_avg, "state_avg_06-25.csv", driver = "CSV", delete_dsn = TRUE)
 

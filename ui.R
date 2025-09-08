@@ -53,21 +53,21 @@ ui <- navbarPage(
             "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
             "Hispanic or Latino homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
             "Median home value (2023)" = "med_home_value2023",
-            "Mortgage burdened households rate(2023)" = "mortgage_burdened_pct2023"
+            "Mortgage burden rate (2023)" = "mortgage_burdened_pct2023"
           ),
           "Renter households" = list(
             "Rentership rate (2023)" = "renter_occ_hh_pct2023",
-            "Rent burdened households (2023)" = "rent_burdened_pct2023",
+            "Rent burden rate (2023)" = "rent_burdened_pct2023",
             "Median gross rent (2023)" = "med_gross_rent2023"
           ),
           "Housing stock" = list(
-            "Vacant rental units (2023)" = "renter_vacant_pct2023",
+            "Rental vacancy rate (2023)" = "renter_vacant_pct2023",
             "Median year home built (2023)" = "med_age_home2023",
             # "Affordable rent units available" = "afford_avail_units",
             "Affordable housing shortage (2021)" = "housing_balance",
-            "Permits approved for residential units (2024)" = "totalresunitpermits24"
+            "Residential permit approval rate (2024)" = "resunitpermitsrate24"
           ),
-          "Other topics" = list("Households with internet access (2023)" = "internet_hh_pct2023")
+          "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
         ),
         selected = "owner_occ_hh_pct2023"
       ),
@@ -95,21 +95,21 @@ ui <- navbarPage(
               "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
               "Hispanic or Latino homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
               "Median home value (2023)" = "med_home_value2023",
-              "Mortgage burdened households rate (2023)" = "mortgage_burdened_pct2023"
+              "Mortgage burden rate (2023)" = "mortgage_burdened_pct2023"
             ),
             "Renter households" = list(
               "Rentership rate (2023)" = "renter_occ_hh_pct2023",
-              "Rent burdened households (2023)" = "rent_burdened_pct2023",
+              "Rent burden rate (2023)" = "rent_burdened_pct2023",
               "Median gross rent (2023)" = "med_gross_rent2023"
             ),
             "Housing stock" = list(
-              "Vacant rental units (2023)" = "renter_vacant_pct2023",
+              "Rental vacancy rate (2023)" = "renter_vacant_pct2023",
               "Median year home built (2023)" = "med_age_home2023",
               # "Affordable rent units available" = "afford_avail_units",
               "Affordable housing shortage (2021)" = "housing_balance",
-              "Permits approved for residential units (2024)" = "totalresunitpermits24"
+              "Residential permit approval rate (2024)" = "resunitpermitsrate24"
             ),
-            "Other topics" = list("Households with internet access (2023)" = "internet_hh_pct2023")
+            "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
           ),
           selected = "owner_occ_hh_pct2023"
         ),
@@ -218,21 +218,21 @@ ui <- navbarPage(
                      "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
                      "Hispanic or Latino homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
                      "Median home value (2023)" = "med_home_value2023",
-                     "Mortgage burdened households rate (2023)" = "mortgage_burdened_pct2023"
+                     "Mortgage burden rate (2023)" = "mortgage_burdened_pct2023"
                    ),
                    "Renter households" = list(
                      "Rentership rate (2023)" = "renter_occ_hh_pct2023",
-                     "Rent burdened households (2023)" = "rent_burdened_pct2023",
+                     "Rent burden rate (2023)" = "rent_burdened_pct2023",
                      "Median gross rent (2023)" = "med_gross_rent2023"
                    ),
                    "Housing stock" = list(
-                     "Vacant rental units (2023)" = "renter_vacant_pct2023",
+                     "Rental vacancy rate (2023)" = "renter_vacant_pct2023",
                      "Median year home built (2023)" = "med_age_home2023",
                      # "Affordable rent units available" = "afford_avail_units",
                      "Affordable housing shortage (2021)" = "housing_balance",
-                     "Permits approved for residential units (2024)" = "totalresunitpermits24"
+                     "Residential permit approval rate (2024)" = "resunitpermitsrate24"
                    ),
-                   "Other topics" = list("Households with internet access (2023)" = "internet_hh_pct2023")
+                   "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
                  ),
                  selected = "owner_occ_hh_pct2023"
                ),
@@ -246,21 +246,21 @@ ui <- navbarPage(
                      "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
                      "Hispanic or Latino homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
                      "Median home value (2023)" = "med_home_value2023",
-                     "Mortgage burdened households rate (2023)" = "mortgage_burdened_pct2023"
+                     "Mortgage burden rate (2023)" = "mortgage_burdened_pct2023"
                    ),
                    "Renter households" = list(
                      "Rentership rate (2023)" = "renter_occ_hh_pct2023",
-                     "Rent burdened households (2023)" = "rent_burdened_pct2023",
+                     "Rent burden rate (2023)" = "rent_burdened_pct2023",
                      "Median gross rent (2023)" = "med_gross_rent2023"
                    ),
                    "Housing stock" = list(
-                     "Vacant rental units (2023)" = "renter_vacant_pct2023",
+                     "Rental vacancy rate (2023)" = "renter_vacant_pct2023",
                      "Median year home built (2023)" = "med_age_home2023",
                      # "Affordable rent units available" = "afford_avail_units",
                      "Affordable housing shortage (2021)" = "housing_balance",
-                     "Permits approved for residential units (2024)" = "totalresunitpermits24"
+                     "Residential permit approval rate (2024)" = "resunitpermitsrate24"
                    ),
-                   "Other topics" = list("Households with internet access (2023)" = "internet_hh_pct2023")
+                   "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
                  ),
                  selected = "owner_occ_hh_pct2023"
                ),
@@ -292,21 +292,21 @@ ui <- navbarPage(
                      "Black homeownership rate (2023)" = "black_own_occ_hh_pct2023",
                      "Hispanic or Latino homeownership rate (2023)" = "hisp_lat_own_occ_hh_pct2023",
                      "Median home value (2023)" = "med_home_value2023",
-                     "Mortgage burdened households rate (2023)" = "mortgage_burdened_pct2023"
+                     "Mortgage burden rate (2023)" = "mortgage_burdened_pct2023"
                    ),
                    "Renter households" = list(
                      "Rentership rate (2023)" = "renter_occ_hh_pct2023",
-                     "Rent burdened households (2023)" = "rent_burdened_pct2023",
+                     "Rent burden rate (2023)" = "rent_burdened_pct2023",
                      "Median gross rent (2023)" = "med_gross_rent2023"
                    ),
                    "Housing stock" = list(
-                     "Vacant rental units (2023)" = "renter_vacant_pct2023",
+                     "Rental vacancy rate (2023)" = "renter_vacant_pct2023",
                      "Median year home built (2023)" = "med_age_home2023",
                      # "Affordable rent units available" = "afford_avail_units",
                      "Affordable housing shortage (2021)" = "housing_balance",
-                     "Permits approved for residential units (2024)" = "totalresunitpermits24"
+                     "Residential permit approval rate (2024)" = "resunitpermitsrate24"
                    ),
-                   "Other topics" = list("Households with internet access (2023)" = "internet_hh_pct2023")
+                   "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
                  ),
                  selected = "owner_occ_hh_pct2023"
                ),
