@@ -302,14 +302,16 @@ counties.sf <- rbind(erie, noterie) %>%
   distinct(county, .keep_all = TRUE)
 
 #### permit files by county ####
-permits <- st_read("co2024a_clean.csv") %>%
+#### https://www.census.gov/construction/bps/index.html ####
+
+permits <- st_read("co2023a_clean.csv") %>%
   filter(FIPSState == 42) %>%
   mutate(county = str_remove(CountyName, "\\ County.*$")) %>%
-  mutate(totalresunitpermits24 = as.numeric(X1UnitUnits) + as.numeric(X2UnitUnits) + as.numeric(X3_4UnitUnits) + as.numeric(X5UnitUnits)) %>%
-  select(county, totalresunitpermits24)
+  mutate(totalresunitpermits23 = as.numeric(X1UnitUnits) + as.numeric(X2UnitUnits) + as.numeric(X3_4UnitUnits) + as.numeric(X5UnitUnits)) %>%
+  select(county, totalresunitpermits23)
 
 permits_pa <- permits %>%
-  summarize(totalresunitpermits24 = round(sum(totalresunitpermits24), 0))
+  summarize(totalresunitpermits23 = round(sum(totalresunitpermits23), 0))
 
 #### Write panel #### 
 dat <- dat %>%
@@ -327,12 +329,12 @@ panel.sf <- dat %>%
   st_drop_geometry() %>%
   left_join(dat, by = "county") %>%
   st_as_sf() %>%
-  mutate(resunitpermitsrate24 = ifelse(housing_balance != 0, round(abs(totalresunitpermits24/housing_balance)*100), 0))
+  mutate(resunitpermitsrate23 = ifelse(housing_balance != 0, round(totalresunitpermits23/(total_housing_units2023/10000)), 0))
 
 st_write(panel.sf, "PHFA_dash_data_June.25.geojson", driver = "GeoJSON", delete_dsn = TRUE)
 
 state_avg <- cbind(chas_pa, dat_PA, permits_pa) %>%
-  mutate(resunitpermitsrate24 = ifelse(housing_balance != 0, round(abs(totalresunitpermits24/housing_balance)*100), 0))
+  mutate(resunitpermitsrate23 = ifelse(housing_balance != 0, round(totalresunitpermits23/(total_housing_units2023/10000)), 0))
 
 st_write(state_avg, "state_avg_06-25.csv", driver = "CSV", delete_dsn = TRUE)
 

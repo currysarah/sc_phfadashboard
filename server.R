@@ -59,7 +59,7 @@ variable_aliases <- c(
 "mortgage_burdened_pct2023" = "Mortgage burden rate (2023)",
 "med_gross_rent2023" = "Median gross rent (2023)",
 "housing_balance" = "Affordable housing shortage (2021)",
-"resunitpermitsrate24" = "Residential permit approval rate (2024)"
+"resunitpermitsrate23" = "Residential permit approvals per 10,000 units (2023)"
 )
 
 # prefixes for legend labels 
@@ -77,7 +77,7 @@ variable_prefix <- c(
 "mortgage_burdened_pct2023" = "",
 "med_gross_rent2023" = "$",
 "housing_balance" = "",
-"resunitpermitsrate24" = ""
+"resunitpermitsrate23" = ""
 )
 
 # suffixes for legend labels
@@ -95,7 +95,7 @@ variable_suffix <- c(
   "mortgage_burdened_pct2023" = "%",
   "med_gross_rent2023" = "",
   "housing_balance" = " units",
-  "resunitpermitsrate24" = "%"
+  "resunitpermitsrate23" = " permits"
 )
 
 # variable type
@@ -113,7 +113,7 @@ variable_type <- c(
   "mortgage_burdened_pct2023" = "percent",
   "med_gross_rent2023" = "currency",
   "housing_balance" = "",
-  "resunitpermitsrate24" = "percent"
+  "resunitpermitsrate23" = ""
 )
 #### Server ####
 server <- function(input, output, session) {
@@ -221,7 +221,7 @@ ggplotly(barp,
     "mortgage_burdened_pct2023" = "Mortgage burden rate (%) indicates the share of owner-occupied households with incomes less than $35,000 that spend 30% or more of their income on mortgage payments. Higher percentages may show potential financial strain for low-income homeowners. Hover over a county to see that county's rate and the state average rate.",
     "med_gross_rent2023" = "Median gross rent conveys the midpoint amount that households pay in total for their contract rent, utilities, and fuel costs. Low-income households living in areas with higher median gross rent tend to have greater challenges with housing affordability. Hover over a county to see that county's madian value and the state median value.",
     "housing_balance" = "Affordable housing shortage (units) refers to the difference between the demand for rental units affordable to extremely low-income households (income < 30% of area median income) and the supply available. A positive number indicates a shortage of affordable housing units. Hover over a county to see that county's shortage and the state total shortage.",
-    "resunitpermitsrate24" = "The residential permit approval rate represents the number of residential permits approved as a share of the affordable housing shortage. Residential permits specifically include approvals of new, privately-owned residential construction in 2024. Hover over a county to see that county's rate and the state average rate.")
+    "resunitpermitsrate23" = "Residential permit approvals per 10,000 units represents the number of residential permits that were approved per 10,000 total existing housing units in 2023. Residential permits specifically include approvals of new, privately-owned residential construction. Hover over a county to see that county's rate and the state average rate.")
     v <- input$variable
     desc <- description[v]
     return(desc)
@@ -379,7 +379,7 @@ ggplotly(scatterp + theme(legend.position = c(0.6, 0.6)),
       }
     }
 
-    # legend labels
+    # legend labels ## suspect these are not used and can be deleted ##
     labels_map <- c(
       as.character(round(quantile(var_map, probs = c(0.2), na.rm = TRUE) ,0)),
       as.character(round(quantile(var_map, probs = c(0.4), na.rm = TRUE) ,0)),

@@ -65,7 +65,7 @@ ui <- navbarPage(
             "Median year home built (2023)" = "med_age_home2023",
             # "Affordable rent units available" = "afford_avail_units",
             "Affordable housing shortage (2021)" = "housing_balance",
-            "Residential permit approval rate (2024)" = "resunitpermitsrate24"
+            "Residential permit approvals per 10,000 units (2023)" = "resunitpermitsrate23"
           ),
           "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
         ),
@@ -107,7 +107,7 @@ ui <- navbarPage(
               "Median year home built (2023)" = "med_age_home2023",
               # "Affordable rent units available" = "afford_avail_units",
               "Affordable housing shortage (2021)" = "housing_balance",
-              "Residential permit approval rate (2024)" = "resunitpermitsrate24"
+              "Residential permit approvals per 10,000 units (2023)" = "resunitpermitsrate23"
             ),
             "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
           ),
@@ -230,7 +230,7 @@ ui <- navbarPage(
                      "Median year home built (2023)" = "med_age_home2023",
                      # "Affordable rent units available" = "afford_avail_units",
                      "Affordable housing shortage (2021)" = "housing_balance",
-                     "Residential permit approval rate (2024)" = "resunitpermitsrate24"
+                     "Residential permit approvals per 10,000 units (2023)" = "resunitpermitsrate23"
                    ),
                    "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
                  ),
@@ -258,7 +258,7 @@ ui <- navbarPage(
                      "Median year home built (2023)" = "med_age_home2023",
                      # "Affordable rent units available" = "afford_avail_units",
                      "Affordable housing shortage (2021)" = "housing_balance",
-                     "Residential permit approval rate (2024)" = "resunitpermitsrate24"
+                     "Residential permit approvals per 10,000 units (2023)" = "resunitpermitsrate23"
                    ),
                    "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
                  ),
@@ -304,7 +304,7 @@ ui <- navbarPage(
                      "Median year home built (2023)" = "med_age_home2023",
                      # "Affordable rent units available" = "afford_avail_units",
                      "Affordable housing shortage (2021)" = "housing_balance",
-                     "Residential permit approval rate (2024)" = "resunitpermitsrate24"
+                     "Residential permit approvals per 10,000 units (2023)" = "resunitpermitsrate23"
                    ),
                    "Other topics" = list("Internet access rate (2023)" = "internet_hh_pct2023")
                  ),
